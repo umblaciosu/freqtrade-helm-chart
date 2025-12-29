@@ -1,24 +1,47 @@
 {{- if .Values.ingress.enabled }}
-apiVersion: extensions/v1beta1
+{{- $ingressV1 := .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" -}}
+{{- if $ingressV1 }}
+apiVersion: networking.k8s.io/v1
+{{- else }}
+apiVersion: networking.k8s.io/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: freqtrade
 spec:
   rules:
-  - host: localhost
+  - host: {{ default "localhost" .Values.ingress.host | quote }}
     http:
       paths:
       {{- if (and .Values.bot.enabled .Values.config.api_server.enabled) }}
       - path: /
+        {{ if $ingressV1 }}
+        pathType: Prefix
+        backend:
+          service:
+            name: freqtrade
+            port:
+              number: 8080
+        {{ else }}
         backend:
           serviceName: freqtrade
           servicePort: 8080
+        {{ end }}
       {{- end }}
       {{- if (and .Values.backtesting.results.enable_export .Values.backtesting.results.reader_enabled) }}
       - path: /results
+        {{ if $ingressV1 }}
+        pathType: Prefix
+        backend:
+          service:
+            name: results-reader
+            port:
+              number: 80
+        {{ else }}
         backend:
           serviceName: results-reader
           servicePort: 80
+        {{ end }}
       {{- end }}
 ---
 {{- end }}
