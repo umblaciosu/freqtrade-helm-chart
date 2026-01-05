@@ -28,7 +28,7 @@ config:
     ignore_roi_if_entry_signal: false
   download_trades: false
   exchange:
-    name: kraken
+    name: binance
     key: ''
     secret: ''
     ccxt_config:
