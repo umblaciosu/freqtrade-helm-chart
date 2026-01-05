@@ -43,7 +43,7 @@ config:
   pairlists:
   - method: StaticPairList
   edge:
-    enabled: false
+    enabled: true
     process_throttle_secs: 3600
     calculate_since_number_of_days: 7
     allowed_risk: 0.01
@@ -60,7 +60,7 @@ config:
     token: ''
     chat_id: ''
   api_server:
-    enabled: false
+    enabled: true
     listen_ip_address: 0.0.0.0
     listen_port: 8080
     username: admin
@@ -76,7 +76,7 @@ image:
   tag: latest
 
 backtesting:
-  enabled: false
+  enabled: true
   download_data: true
   timerange:
   timeframes: 5m
@@ -89,12 +89,12 @@ backtesting:
     pvc_size: 1Gi
 
 bot:
-  enabled: false
+  enabled: true
   strategy_name: SampleStrategy
   pvc_size: 1Gi
 
 ingress:
-  enabled: true
+  enabled: false
 
 create_config_configmap: true
 create_strategies_configmap: true
