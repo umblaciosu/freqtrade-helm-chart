@@ -94,7 +94,7 @@ backtesting:
   download_data: true
   timerange:
   timeframes: 5m
-  strategy_list: SampleStrategy
+  strategy_list: Strategy001
   fee:
   pvc_size: 1Gi
   results:
@@ -104,7 +104,7 @@ backtesting:
 
 bot:
   enabled: true
-  strategy_name: SampleStrategy
+  strategy_name: Strategy001
   pvc_size: 1Gi
 
 ingress:

@@ -10,14 +10,14 @@ import talib.abstract as ta
 import freqtrade.vendor.qtpylib.indicators as qtpylib
 
 
-class Strategy001(IStrategy):
+class SampleStrategy(IStrategy):
     """
     Strategy 001
     author@: Gerald Lonlas
     github@: https://github.com/freqtrade/freqtrade-strategies
 
     How to use it?
-    > python3 ./freqtrade/main.py -s Strategy001
+    > python3 ./freqtrade/main.py -s SampleStrategy
     """
 
     INTERFACE_VERSION: int = 3
