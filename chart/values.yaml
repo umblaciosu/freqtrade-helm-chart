@@ -26,6 +26,20 @@ config:
     use_exit_signal: true
     exit_profit_only: false
     ignore_roi_if_entry_signal: false
+  entry_pricing:
+    price_side: bid
+    use_order_book: false
+    order_book_top: 1
+    check_depth_of_market:
+      enabled: false
+      bids_to_ask_delta: 1
+  exit_pricing:
+    price_side: ask
+    use_order_book: false
+    order_book_top: 1
+    check_depth_of_market:
+      enabled: false
+      bids_to_ask_delta: 1
   download_trades: false
   exchange:
     name: binance
